@@ -1,0 +1,101 @@
+/*anchor
+Use at least one array.
+Use at least two classes.
+Your menu should have the options to create, view, and delete elements.
+*/
+
+
+//discs
+
+//disc class
+    //brand
+    //mold
+class disc{
+    constructor(brand, mold){
+        this.brand = brand;
+        this.mold = mold;
+    }
+}
+
+//class menu
+class Menu{
+    constructor(){
+
+    //discs array
+    this.discs = [];
+}
+    //see a menu
+    showMenu(){
+        return prompt(` 
+            Main Menu:
+            
+            0) Exit Menu
+            1) Add Disc
+            2) Delete Disc
+            3) View All Discs
+            `);
+    }
+
+    //add discs
+    //prompt brand
+    //prompt mold
+    //push to array
+    addDisc(){
+        let discBrand = prompt("Enter disc brand:");
+        let discMold = prompt("Enter the mold of the disc:");
+        this.discs.push(new disc(discBrand, discMold));
+    }
+
+
+    //delete discs
+    deleteDisc(){
+        let discIndex = prompt("Enter the Disc you'd like to delete:");
+        this.discs.splice(discIndex, 1);
+    }
+
+    //view disc
+    viewDiscs(){
+        let displayDiscs = '';
+        for (let i = 0; i < this.discs.length; i++){
+            displayDiscs += `
+            ${i} - ${this.discs[i].brand} ${this.discs[i].mold}`
+        }
+
+        alert(
+            `             Disc Inventory:
+            ------------------
+
+        ${displayDiscs}
+        `);        
+    }
+
+    //start the menu
+    start(){
+        let selection = this.showMenu();
+    while(selection != 0){
+        switch(selection){
+            case "1": this.addDisc();
+            break;
+
+            case "2": this.deleteDisc();
+            break;
+
+            case "3": this.viewDiscs();
+            break;        
+
+            default: selection = 0;
+        }
+        selection = this.showMenu()
+        }
+        alert("Goodbye!");
+    }
+    
+}
+
+//instantiate the menu and invoke the start method. 
+
+
+
+let menu = new Menu();
+
+menu.start();
